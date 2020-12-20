@@ -68,15 +68,13 @@ def normalize(points: dict):
 	y_min = min([k for k in points.keys()])
 	y_max = max([k for k in points.keys()])
 
-	x_len = (x_max + x_min)//2
-	y_len = (y_max + y_min)//2
-
 	new_points = {}
 
 	for key in points:
 		new_points[key - y_min] = set(map(lambda x: x - x_min , points[key]))
 	
 	return new_points
+
 
 def plot_points(points, add_axis = True):
 	points = normalize(points)
@@ -85,9 +83,6 @@ def plot_points(points, add_axis = True):
 	x_max = max([max(l) for l in points.values()])
 	y_min = min([k for k in points.keys()])
 	y_max = max([k for k in points.keys()])
-
-	x_avg = (x_max+x_min)//2
-	y_avg = (y_max+y_min)//2
 
 	grid: list = create_grid(x_max,y_max, add_axis)
 
@@ -143,8 +138,6 @@ if __name__ == "__main__":
 	grid2 = plot_points(P)
 
 	grid3 = plot_points(P3)
-	
-	# [print(l) for l in add_axis_zero(["·····","·····","·····","·····","·····","·····"])]
 
 	#for l in grid:
 	#	print(l)
