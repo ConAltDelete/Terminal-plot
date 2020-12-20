@@ -1,8 +1,5 @@
 import math
 
-# funksjoner
-
-from sample_funk import *
 
 def even(x):
 	return x % 2 == 0
@@ -12,7 +9,7 @@ def even(x):
 
 def create_points(k,n : int):
 	"""
-	genererer en dict med entydige punkter fra en funksjon k med enkel parameter t som går fra 0 mot 1 med n intervaller.
+	Makes a dictonary from function k that takes paramater t in [0,1) with max(t) = 1-1/n.
 	:NOTE: We do not hit 1 but hit 1-1/n.
 	:param k [ function ]: function to be ploted.
 	:return [ dict[int]:set(int) ]:
@@ -51,11 +48,11 @@ def temp_create_grid(N : int, y : dict):
 
 def create_grid(len_x,len_y, add_axis = True):
 	"""
-	Denne funksjonen genererer en 2D liste med [len_y + 1 * len_x + 1] punkter.
+	Creates an empty grid.
 	:param len_x [ int ]: lenght of x-coordinate
 	:param len_y [ int ]: lenght of y-coordinate
 	:param add_axis [ bool ]: Do you want '|' and '-' in your graph?
-	:return [ list[str] ]: empty grid
+	:return [ list[list[str]] ]: empty grid
 	"""
 	#len_x += 1 #! undersøk kutting av graf, disse er for å få det fram
 	#len_y += 1
@@ -70,9 +67,7 @@ def create_grid(len_x,len_y, add_axis = True):
 
 def normalize(points: dict):
 	"""
-	Denne funksjonen finner senter til en gruppe punkter også justerer 
-	absolutt koordiantene til relative koordinater basert på sentrum av gruppen.
-	:param points [ dict[int]:set(int) ]: en ordbok som har y koordianter som nøkkel og x koordinater som verdi i en iterabel type (list, set, etc)
+	Adjusts points to make them relative to senter of the population.
 	:return [ dict[int]:set(int) ]: A dictonary with adjusted points.
 	"""
 	x_min = min([min(l) for l in points.values()])
@@ -93,7 +88,7 @@ def plot_points(points, add_axis = True):
 	Creates plot to be printed.
 	:param points [ dict[int]:set(int) ]: deskribes the figure to be ploted.
 	:param add_axis [ bool ]: Adds axis on graph if wanted.
-	:return [ list[str] ]: ploted grid
+	:return [ list[list[str]] ]: ploted grid
 	"""
 	points = normalize(points)
 
@@ -117,9 +112,9 @@ def plot_points(points, add_axis = True):
 
 def add_axis_zero(grid: list):
 	"""
-	Denne funksjonen legger til akser som er sentrert til beste evne.
-	:param grid [ list[str] ]: en liste med string.
-	:return [ list[str] ]: en liste med string med karakterene '|' og '⎯'
+	Adds axis along the center axis to its best ability.
+	:param grid [ list[list[str]] ]: en liste med string.
+	:return [ list[list[str]] ]: en liste med string med karakterene '|' og '⎯'
 	"""
 	len_y = len(grid)
 	len_x = len(grid[0])
@@ -142,6 +137,7 @@ def add_axis_zero(grid: list):
 	return grid
 
 if __name__ == "__main__":
+	from sample_funk import *
 	k = spiral(N := 30)
 	k2 = sirkel(N)
 	k3 = grafh(lambda x: 10*math.sin(0.25*x),0,50)
