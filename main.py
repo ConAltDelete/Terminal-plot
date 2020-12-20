@@ -77,6 +77,9 @@ def normalize(points: dict):
 
 
 def plot_points(points, add_axis = True):
+	"""
+	plot points in terminal.
+	"""
 	points = normalize(points)
 
 	x_min = min([min(l) for l in points.values()])
