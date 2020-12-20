@@ -113,8 +113,8 @@ def plot_points(points, add_axis = True):
 def add_axis_zero(grid: list):
 	"""
 	Adds axis along the center axis to its best ability.
-	:param grid [ list[list[str]] ]: en liste med string.
-	:return [ list[list[str]] ]: en liste med string med karakterene '|' og '⎯'
+	:param grid [ list[list[str]] ]: a list of list of strings
+	:return [ list[list[str]] ]: a list of list of strings with the characters '|' and '⎯'
 	"""
 	len_y = len(grid)
 	len_x = len(grid[0])
